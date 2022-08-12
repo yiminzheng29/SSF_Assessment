@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <title>Latest News</title>
+</head>
+<body>
+    
+    <marquee behavior="" direction="right"><h1>Crypto News of the Day</h1></marquee>
+    <br><br>
+
+    <div>
+
+
+            <form action="/articles" method="POST">
+                <p align="right">
+                    <input type="submit" value="Save" style="height:50px; width:50px">
+                </p>
+                <div data-th-each="r: ${results}">
+                    
+                    <br><br>
+                <table frame="box">
+
+                        <td>
+                            <img data-th-src="${r.imageurl}">
+                        </td>
+
+                    <div>
+                        <td>
+                            <tr>
+                                <label for="id">Id: </label>
+                                <div class="test">
+                                    <span data-th-text="${r.id}"></span>
+                                </div>
+                            </tr><br>
+                            <tr>
+                                <strong>
+                                    <span data-th-text="${r.title}"></span>
+                                </strong>
+                            </tr><br>
+                            <tr>
+
+                                <span data-th-text="${r.body}"></span>
+
+                            </tr>
+                            <br>
+                            <tr>
+                                Categories: <span data-th-text="${r.categories}"></span>
+                            </tr>
+                            <div>
+                            <tr>
+                                Tags: <span data-th-text="${r.tags}"></span>
+                            </tr><br>
+                            </div>
+                            <tr>
+                                <td>
+                                    Published: <i><span data-th-text="${r.published_on}"></span></i>
+                                </td>
+                                <td>
+                                    <a data-th-href="${r.url}">Link</a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="selected" data-th-value="${r.id}"> Save
+                                </td>
+                            </tr>
+                        </td>
+                    </div>
+                </table>
+                
+
+            </form>
+            
+    </div>
+</body>
+</html>
