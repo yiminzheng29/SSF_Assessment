@@ -25,13 +25,13 @@ public class NewsRESTController {
 
     @GetMapping(value="{id}")
     public ResponseEntity<String> getArticle(@PathVariable String id) {
-        Optional<News> opt = newsSvc.getNewsById(id);
+        Optional<News> news = newsSvc.getArticle(id);
 
-        if (opt.isEmpty()) {
+        if (news.isEmpty()) {
             JsonObject errMsg = Json.createObjectBuilder().add("error", "Cannot find news article %s".formatted(id)).build();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errMsg.toString());
         }
-        News news = opt.get();
-        return ResponseEntity.ok(news.toJson().toString());
+        News result = news.get();
+        return ResponseEntity.ok(result.toJson().toString());
     }
 }

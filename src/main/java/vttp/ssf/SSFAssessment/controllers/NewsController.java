@@ -44,7 +44,7 @@ public class NewsController {
             model.addAttribute("articles", savedNews);
 
 
-            return "articles";
+            return "redirect:/";
         }
         
     }

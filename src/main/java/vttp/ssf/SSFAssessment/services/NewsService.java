@@ -46,7 +46,7 @@ public class NewsService {
             return newsList;
         }
         payload = resp.getBody();
-        System.out.println("Success");
+        System.out.println("Success: " + payload);
         JsonReader jr = Json.createReader(new StringReader(payload));
         JsonObject jo = jr.readObject();
         JsonArray jArr = jo.getJsonArray("Data");
@@ -59,17 +59,11 @@ public class NewsService {
 
     public void saveArticles(List<News> articles) {
         for (int i = 0; i < articles.size(); i++) {
-                newsRepo.saveArticles(articles.get(i));
+                newsRepo.saveArticles(articles.get(i));;
         }
     }
 
-    public Optional<News> getNewsById(String id) {
-        List<News> result = getArticles();
-        for (News news:result) {
-            if (news.getId().equals(id)) {
-                return Optional.of(news);
-            } 
-        }
-        return Optional.empty();
+    public Optional<News> getArticle(String id) {
+        return newsRepo.getArticle(id);
     }
 }
